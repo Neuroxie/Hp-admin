@@ -1,0 +1,84 @@
+{% extends 'datahub/base.html' %}
+
+
+{% block title %}
+    Add Region | Hello River Police
+{% endblock title %}
+
+{% block content %}
+
+<div class="flex items-center justify-center p-12">
+     
+    <div class="mx-auto w-full max-w-[550px] bg-white">
+        <h2 style="text-align: center; font-size: 28px;" class="font-bold my-3">Add Region</h2>
+      <form
+        class="py-6 px-9"
+        method="POST"
+      >
+      {% csrf_token %}
+        <div class="mb-5">
+          <label
+            for="region"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Region (English):
+          </label>
+          <input required
+            type="text"
+            name="region"
+            id="region"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-5">
+            <label
+              for="regionbn"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Region (Bangla):
+            </label>
+            <input required
+              type="text"
+              name="regionbn"
+              id="regionbn"
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+          </div>
+          <div class="mb-5">
+            <label
+              for="sdistrict"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Select Districts (Multiple Selection Allowed):
+            </label>
+            <select name="sdistrict" id="sdistrict" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" multiple>
+                {% for e in ds %}
+                <option value="{{e.id}}">{{e.name}}</option>
+                {% endfor %}
+            </select>
+          </div>
+          <div class="mb-5">
+            <label
+              for="sps"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Select Police Stations (Multiple Selection Allowed):
+            </label>
+            <select name="sps" id="sps" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" multiple>
+                {% for e in ps %}
+                <option value="{{e.id}}">{{e.name}}</option>
+                {% endfor %}
+            </select>
+          </div>
+  
+        <div>
+          <button
+            class="hover:shadow-form w-full hover:bg-blue-800 hover:text-white rounded-md bg-green-400 py-3 px-8 text-center text-base font-bold text-black outline-none"
+          >
+            Add Region
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

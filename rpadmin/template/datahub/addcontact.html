@@ -1,0 +1,85 @@
+{% extends 'datahub/base.html' %}
+
+
+{% block title %}
+    Add Contact | Hello River Police
+{% endblock title %}
+
+{% block content %}
+
+<div class="flex items-center justify-center p-12">
+     
+    <div class="mx-auto w-full max-w-[550px] bg-white">
+        <h2 style="text-align: center; font-size: 28px;" class="font-bold my-3">Add Contact</h2>
+      <form
+        class="py-6 px-9"
+        method="POST"
+      >
+      {% csrf_token %}
+        <div class="mb-5">
+          <label
+            for="od"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Officer Designation (English):
+          </label>
+          <input required
+            type="text"
+            name="od"
+            id="od"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-5">
+            <label
+              for="odbn"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Officer Designation (Bangla):
+            </label>
+            <input required
+              type="text"
+              name="odbn"
+              id="odbn"
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+          </div>
+          <div class="mb-5">
+            <label
+              for="contact"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Contact Number (English):
+            </label>
+            <input required
+              type="tel"
+              name="contact"
+              id="contact"
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+          </div>
+          <div class="mb-5">
+            <label
+              for="sps"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Select Police Station:
+            </label>
+            <select name="sps" id="sps" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                {% for e in ps %}
+                <option value="{{e.id}}">{{e.name}}</option>
+                {% endfor %}
+            </select>
+          </div>
+  
+        <div>
+          <button
+            class="hover:shadow-form w-full hover:bg-blue-800 hover:text-white rounded-md bg-green-400 py-3 px-8 text-center text-base font-bold text-black outline-none"
+          >
+            Add Contact
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

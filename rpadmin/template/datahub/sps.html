@@ -1,0 +1,106 @@
+{% extends 'datahub/base.html' %} {% block title %} Sub-Police Stations | Hello River
+Police {% endblock title %} {% block style %}
+<style>
+  .checkbox:checked + .check-icon {
+    display: flex;
+  }
+</style>
+{% endblock style %} {% block content %}
+<div class="sm:px-6 w-full">
+  <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+  <div class="px-4 md:px-10 py-4 md:py-7">
+    <div class="flex items-center justify-between">
+      <p
+        tabindex="0"
+        class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800"
+      >
+        Sub-Police Stations
+      </p>
+      
+    </div>
+  </div>
+  <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
+    <div class="sm:flex items-center justify-between">
+      <div class="flex items-center">
+        
+      </div>
+      <a
+        href="/sps/add"
+        class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"
+      >
+        <p class="text-sm font-medium leading-none text-white">Add Sub-Police Station</p>
+      </a>
+    </div>
+    <div class="mt-7 overflow-x-auto">
+      <table class="w-full whitespace-nowrap">
+        <thead>
+            <tr>
+                <th>Sub-Police Station</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr class="h-3"></tr>
+        </thead>
+        <tbody>
+            {% for e in sps %}
+          <tr
+            tabindex="0"
+            class="focus:outline-none h-16 border border-gray-100 rounded"
+          >
+            <td class="">
+              <div class="flex items-center pl-5">
+                <p
+                  class="text-base font-medium leading-none text-gray-700 mr-2"
+                >
+                  {{e.name}}
+                </p>
+               
+              </div>
+            </td>
+            
+            <td class="pl-5">
+              <button
+                class="font-bold py-3 px-3 text-sm focus:outline-none leading-none text-blue-600 bg-gray-100 rounded"
+              >
+                {{e.created_at}}
+              </button>
+            </td>
+            <td class="pl-5">
+                <button
+                  class="py-3 px-3 text-sm focus:outline-none leading-none text-green-600 font-bold bg-gray-100 rounded"
+                >
+                  {{e.updated_at}}
+                </button>
+              </td>
+            <td class="pl-4">
+              <a
+                href="/sps/edit/{{e.id}}"
+                class="font-bold focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-white py-3 px-5 bg-green-600 rounded hover:bg-green-800 focus:outline-none"
+              >
+                Edit
+              </a>
+            </td>
+            <td class="pl-4">
+                <a
+                  href="/sps/delete/{{e.id}}"
+                  class="font-bold focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-white py-3 px-5 bg-red-500 rounded hover:bg-red-800 focus:outline-none"
+                >
+                  Delete
+                </a>
+              </td>
+            
+          </tr>
+          <tr class="h-3"></tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block fscript %}
+
+{% endblock fscript %}

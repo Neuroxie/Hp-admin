@@ -1,0 +1,79 @@
+{% extends 'datahub/base.html' %}
+
+
+{% block title %}
+    Edit Police Station | Hello River Police
+{% endblock title %}
+
+{% block content %}
+
+<div class="flex items-center justify-center p-12">
+
+     
+    <div class="mx-auto w-full max-w-[550px] bg-white">
+        <h2 style="text-align: center; font-size: 28px;" class="font-bold my-3">Edit Police Station</h2>
+      <form
+        class="py-6 px-9"
+        method="POST"
+      >
+      {% csrf_token %}
+        <div class="mb-5">
+          <label
+            for="ps"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Police Station (English):
+          </label>
+          <input required
+            type="text"
+            name="ps"
+            id="ps"
+            value="{{e.name}}"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-5">
+            <label
+              for="psbn"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Police Station (Bangla):
+            </label>
+            <input required
+              type="text"
+              name="psbn"
+              id="psbn"
+              value="{{e.name_bn}}"
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+          </div>
+          <div class="mb-5">
+            <label
+              for="ssps"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Select Sub-Police Stations (Multiple Selection Allowed):
+            </label>
+            <select name="ssps" id="ssps" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" multiple>
+                {% for i in sps %}
+                    {% if i in e.thanas.all %}
+                        <option value="{{i.id}}" selected>{{i.name}}</option>
+                    {% else %}
+                        <option value="{{i.id}}">{{i.name}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+          </div>
+        
+  
+        <div>
+          <button
+            class="hover:shadow-form w-full hover:bg-blue-800 hover:text-white rounded-md bg-green-400 py-3 px-8 text-center text-base font-bold text-black outline-none"
+          >
+            Update Police Station
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

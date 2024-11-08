@@ -1,0 +1,128 @@
+{% extends 'datahub/base.html' %} {% block title %} Call Logs | Hello River
+Police {% endblock title %} {% block style %}
+<style>
+  .checkbox:checked + .check-icon {
+    display: flex;
+  }
+</style>
+{% endblock style %} {% block content %}
+<div class="sm:px-6 w-full">
+  <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+  <div class="px-4 md:px-10 py-4 md:py-7">
+    <div class="flex items-center justify-between">
+      <p
+        tabindex="0"
+        class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800"
+      >
+        Call History
+      </p>
+      
+    </div>
+  </div>
+  <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
+    <div class="sm:flex items-center justify-between">
+      <div class="flex items-center">
+        
+      </div>
+      
+    </div>
+    <div class="mt-7 overflow-x-auto">
+      <table class="w-full whitespace-nowrap">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>User Location</th>
+                <th>Police</th>
+                <th>Police Location</th>
+                <th>Status</th>
+                <th>Time</th>
+            </tr>
+            <tr class="h-3"></tr>
+        </thead>
+        <tbody>
+            {% for e in logs %}
+          <tr
+            tabindex="0"
+            class="focus:outline-none h-16 border border-gray-100 rounded"
+          >
+            <td class="">
+              <div class="flex items-center pl-5">
+                <p
+                  class="text-base font-medium leading-none text-gray-700 mr-2"
+                >
+                  {{e.id}}
+                </p>
+               
+              </div>
+            </td>
+            <td class="">
+                <div class="flex items-center pl-5">
+                  <p
+                    class="text-base font-medium leading-none text-gray-700 mr-2"
+                  >
+                    {{e.user.name}}<br>
+                    {{e.user.phone}}
+                  </p>
+                 
+                </div>
+              </td>
+              <td class="">
+                <div class="flex items-center pl-5">
+                  <p
+                    class="text-base font-medium leading-none text-gray-700 mr-2"
+                  >
+                    ({{e.user_lat}}, {{e.user_lon}})
+                  </p>
+                 
+                </div>
+              </td>
+            
+              <td class="">
+                <div class="flex items-center pl-5">
+                  <p
+                    class="text-base font-medium leading-none text-gray-700 mr-2"
+                  >
+                    {{e.police.name}}<br>
+                    {{e.police.phone}}
+                  </p>
+                 
+                </div>
+              </td>
+              <td class="">
+                <div class="flex items-center pl-5">
+                  <p
+                    class="text-base font-medium leading-none text-gray-700 mr-2"
+                  >
+                    ({{e.police_lat}}, {{e.police_lon}})
+                  </p>
+                 
+                </div>
+              </td>
+              <td class="pl-5">
+                <button
+                  class="py-3 px-3 text-sm focus:outline-none leading-none text-green-600 font-bold bg-gray-100 rounded"
+                >
+                  {{e.status}}
+                </button>
+              </td>
+              <td class="pl-5">
+                <button
+                  class="py-3 px-3 text-sm focus:outline-none leading-none text-green-600 font-bold bg-gray-100 rounded"
+                >
+                  {{e.time}}
+                </button>
+              </td>
+            
+          </tr>
+          <tr class="h-3"></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block fscript %}
+
+{% endblock fscript %}

@@ -1,0 +1,79 @@
+{% extends 'datahub/base.html' %} {% block title %} Dashboard | Hello River
+Police {% endblock title %} {% block style %}
+<style>
+    .checkbox:checked + .check-icon {
+    display: flex;
+    }
+
+    #map {
+        height: 60vh;
+        width: 100%;
+    }
+</style>
+{% endblock style %} {% block content %}
+<div class="sm:px-6 w-full">
+  <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+  <div class="px-4 md:px-10 py-4 md:py-7">
+    <div class="flex items-center justify-between">
+      <p
+        tabindex="0"
+        class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800"
+      >
+        Police Location in Map (Total: {{ln}}) 
+      </p>
+      
+    </div>
+  </div>
+  <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
+    
+    <div class="mt-7 overflow-x-auto">
+        <h3>Click on Marks to See their details</h3>
+        <div id="map"></div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block fscript %}
+<script async>
+    const locations = {{ loc|safe }};
+    console.log('loc', locations)
+
+// Initialize the map
+function initMap() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 10,  // Adjust the zoom level
+        center: { lat: locations[0].lat, lng: locations[0].lng }  // Center map at the first location
+    });
+
+    // Add pins for each location
+    locations.forEach(location => {
+        const marker = new google.maps.Marker({
+            position: { lat: location.lat, lng: location.lng },
+            map: map
+        });
+
+        // Create an InfoWindow to show user details on marker click
+        const infoWindow = new google.maps.InfoWindow({
+            content: `
+                <div>
+                    <strong>Name:</strong> ${location.name}<br>
+                    <strong>Phone:</strong> ${location.phone}<br>
+                    <strong>Thana:</strong> ${location.thana}<br>
+                    <strong>Designation:</strong> ${location.designation}
+                </div>
+            `
+        });
+
+        // Add a click event listener to open the InfoWindow
+        marker.addListener('click', () => {
+            infoWindow.open(map, marker);
+        });
+    });
+}
+</script>
+
+<!-- Load Google Maps JavaScript API -->
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCf7G9xWHFmcqBCnegGV69QH_gH8K4xai4&callback=initMap">
+</script>
+{% endblock fscript %}

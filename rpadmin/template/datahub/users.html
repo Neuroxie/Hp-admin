@@ -1,0 +1,120 @@
+{% extends 'datahub/base.html' %} {% block title %} Users | Hello River
+Police {% endblock title %} {% block style %}
+<style>
+  .checkbox:checked + .check-icon {
+    display: flex;
+  }
+</style>
+{% endblock style %} {% block content %}
+<div class="sm:px-6 w-full">
+  <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+  <div class="px-4 md:px-10 py-4 md:py-7">
+    <div class="flex items-center justify-between">
+      <p
+        tabindex="0"
+        class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800"
+      >
+        General Users
+      </p>
+      
+    </div>
+  </div>
+  <div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
+    <div class="sm:flex items-center justify-between">
+      <div class="flex items-center">
+        
+      </div>
+      
+    </div>
+    <div class="mt-7 overflow-x-auto">
+      <table class="w-full whitespace-nowrap">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Contact Number</th>
+                <th>E-mail</th>
+                <th>District</th>
+                <th>Address</th>
+                <th>Nid</th>
+                <th>Joined At</th>
+            </tr>
+            <tr class="h-3"></tr>
+        </thead>
+        <tbody>
+            {% for e in police %}
+          <tr
+            tabindex="0"
+            class="focus:outline-none h-16 border border-gray-100 rounded"
+          >
+            <td class="">
+              <div class="flex items-center pl-5">
+                <p
+                  class="text-base font-medium leading-none text-gray-700 mr-2"
+                >
+                  {{e.name}}
+                </p>
+               
+              </div>
+            </td>
+            <td class="">
+                <div class="flex items-center pl-5">
+                  <p
+                    class="text-base font-medium leading-none text-gray-700 mr-2"
+                  >
+                    {{e.phone}}
+                  </p>
+                 
+                </div>
+              </td>
+              <td class="">
+                <div class="flex items-center pl-5">
+                  <p
+                    class="text-base font-medium leading-none text-gray-700 mr-2"
+                  >
+                    {{e.email}}
+                  </p>
+                 
+                </div>
+              </td>
+            
+            <td class="pl-5">
+              <button
+                class="font-bold py-3 px-3 text-sm focus:outline-none leading-none text-blue-600 bg-gray-100 rounded"
+              >
+                {{e.district}}
+              </button>
+            </td>
+            <td class="pl-5">
+                <button
+                  class="py-3 px-3 text-sm focus:outline-none leading-none text-green-600 font-bold bg-gray-100 rounded"
+                >
+                  {{e.address}}
+                </button>
+              </td>
+              <td class="pl-5">
+                <button
+                  class="py-3 px-3 text-sm focus:outline-none leading-none text-green-600 font-bold bg-gray-100 rounded"
+                >
+                  {{e.nid}}
+                </button>
+              </td>
+              <td class="pl-5">
+                <button
+                  class="py-3 px-3 text-sm focus:outline-none leading-none text-green-600 font-bold bg-gray-100 rounded"
+                >
+                  {{e.date_joined}}
+                </button>
+              </td>
+            
+          </tr>
+          <tr class="h-3"></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block fscript %}
+
+{% endblock fscript %}
