@@ -1,1 +1,1 @@
-tmux attach -t django
+tmux attach -t django2
